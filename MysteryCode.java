@@ -1,53 +1,57 @@
-
 public class MysteryCode {
+    //Variables
+    static String userInput = "programming is easy";
+    static String modString = "";
+    static String upperOrLower;
+
     public static void main(String[] args) {
+        for(int i = 0; i < userInput.length(); i++){
+            if(!userInput.substring(i, i+1).equals(" ")){
+                modString += userInput.substring(i, i + 1);
+            }
+        }
 
-          String userInput = "programming is easy";
-          String b = "";
-          String c;
+        //Look at end of code
+        reset();
 
-          for(int i = 0; i < userInput.length(); i++){
-              if(!userInput.substring(i, i+1).equals(" ")){
-                  b += userInput.substring(i, i + 1);
-              }
-          }
+        //For for making word alternating upper and lower case.
+        for (int i = 1; i <= userInput.length(); i++) {
+            upperOrLower = userInput.substring(i - 1, i);
+            if (i % 2 == 0) {
+                upperOrLower = upperOrLower.toUpperCase();
+            } else {
+                upperOrLower = upperOrLower.toLowerCase();
+            }
+            modString += upperOrLower + " ";
+        }
 
-          userInput = b;
-          b = "";
+        reset();
 
-          for (int i = 1; i <= userInput.length(); i++) {
-              c = userInput.substring(i - 1, i);
-              if (i % 2 == 0) {
-                   c = c.toUpperCase();
-              } else {
-                  c = c.toLowerCase();
-              }
-              b += c + " ";
-          }
+        System.out.println(userInput);
 
-          userInput = b;
-          b = "";
+        //For for removing parts of the string
+        for (int j = 0; j < userInput.length(); j++) {
+            if(!userInput.substring(j, j+1).equals(" ")){
+                modString += userInput.substring(j, j + 1);
+            }
+        }
 
-          System.out.println(userInput);
+        reset();
+        System.out.println(userInput);
 
-          for (int j = 0; j < userInput.length(); j++) {
-              if(!userInput.substring(j, j+1).equals(" ")){
-                  b += userInput.substring(j, j + 1);
-              }
-          }
+        //Controls output of previous for
+        while (userInput.length() > 1) {
+            for (int j = 0; j < userInput.length(); j+=2) {
+                modString += userInput.substring(j, j + 1);
+            }
+            reset();
+            System.out.println(userInput);
+        }
+    }
 
-          userInput = b;
-          b = "";
-
-          System.out.println(userInput);
-
-          while (userInput.length() > 1) {
-              for (int j = 0; j < userInput.length(); j+=2) {
-                  b += userInput.substring(j, j + 1);
-              }
-              userInput = b;
-              b = "";
-              System.out.println(userInput);
-          }
+    //Resets variables in-between uses to avoid errors.
+    public static void reset() {
+        userInput = modString;
+        modString = "";
     }
 }
